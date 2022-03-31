@@ -4,13 +4,31 @@
     {
         public static void Main(string[] args)
         {
-            Console.CursorVisible = false;
             int bestScore = 0;
+
+            Vector[] sizes = new Vector[]
+            {
+                new Vector(6, 6),
+                new Vector(12, 10),
+                new Vector(16, 12),
+                new Vector(20, 20),
+                new Vector(30, 20),
+            };
 
             while (true)
             {
-                var game = new Game(new Vector(6, 6), 500);
+                Console.CursorVisible = true;
+                Console.Clear();
+                for (int i = 0; i < sizes.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {sizes[i].X}x{sizes[i].Y}");
+                }
+                Console.Write("\nChoose board size:");
+                if (int.TryParse(Console.ReadLine(), out int choise) == false) continue;
+                if (choise <= 0 || choise > sizes.Length) continue;
 
+                Console.CursorVisible = false;
+                var game = new Game(sizes[choise - 1], 500);
                 bool result = game.Play();
 
                 Console.Clear();
