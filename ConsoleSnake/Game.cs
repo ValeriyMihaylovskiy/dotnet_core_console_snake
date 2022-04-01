@@ -115,23 +115,21 @@ namespace ConsoleSnake
         {
             // Add new part with position that already exist in snake's parts array
             // for new part skip one draw call
-            var lastPart = _snake[_snake.Count - 1];
-            _snake.Add(lastPart);
+            _snake.Add(_snake.Last());
+        }
+
+        private int ClampInBoard(int v, int min, int max)
+        {
+            if (v < min) return max;
+            else if (v > max) return min;
+            else return v;
         }
 
         private void MoveSnake()
         {
             // Calculating new head position
-            int x = _snake[0].X + _currentDirection.X;
-            int y = _snake[0].Y + _currentDirection.Y;
-
-            // x clamp
-            if (x < 0) x = _boardSizeX - 1;
-            else if (x == _boardSizeX) x = 0;
-
-            // y clamp
-            if (y < 0) y = _boardSizeY - 1;
-            else if (y == _boardSizeY) y = 0;
+            int x = ClampInBoard(_snake[0].X + _currentDirection.X, 0, _boardSizeX - 1);
+            int y = ClampInBoard(_snake[0].Y + _currentDirection.Y, 0, _boardSizeY - 1);
 
             var lastPartPosition = new Vector(x, y);
 
