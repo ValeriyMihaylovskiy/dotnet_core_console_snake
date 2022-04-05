@@ -27,7 +27,7 @@ namespace ConsoleSnake
 
             _snakePart = "██".Pastel(Color.GreenYellow);
             _applePart = "██".Pastel(Color.Red);
-            _borderPart = "▒▒";
+            _borderPart = "██".Pastel(Color.WhiteSmoke);
             _emptyPart = "  ".Pastel(Color.Black);
         }
 
